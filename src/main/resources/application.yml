@@ -1,0 +1,56 @@
+spring:
+  application:
+    name: feedlink-api
+
+  # default profile 설정
+  profiles:
+    active: local
+
+  # MySQL 데이터베이스 설정
+  datasource:
+    url: jdbc:mysql://localhost:3306/feedlink
+    username: august8
+    password: august8!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA 설정
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # Spring Security 설정
+  security:
+    user:
+      name: admin
+      password: admin
+
+  # DevTools 설정 (자동 재시작)
+  devtools:
+    restart:
+      enabled: true
+
+# logback 설정
+logging:
+  config: classpath:logback-${spring.profiles.active}.xml
+
+# Springdoc OpenAPI 설정
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
