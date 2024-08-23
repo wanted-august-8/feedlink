@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "hastag")
+@Table(name = "hashtag")
 @Getter
 @NoArgsConstructor
 public class Hashtag {
