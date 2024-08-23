@@ -9,7 +9,12 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @Configuration
-@EnableJpaRepositories("com.feedlink.api.feedlink_api.repository")
+@EnableJpaRepositories(basePackages = {
+    "com.feedlink.api.feedlink_api.domain.member.repository",
+    "com.feedlink.api.feedlink_api.domain.post.repository",
+    "com.feedlink.api.feedlink_api.domain.hashtag.repository",
+    "com.feedlink.api.feedlink_api.domain.posthashtag.repository",
+})
 public class QueryDslConfig {
 
     @PersistenceContext
