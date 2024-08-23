@@ -1,4 +1,4 @@
-package com.feedlink.api.feedlink_api.enums;
+package com.feedlink.api.feedlink_api.domain.post.enums;
 
 import lombok.Getter;
 
@@ -9,7 +9,7 @@ public enum PostType {
     INSTAGRAM("instagram"),
     THREADS("threads");
 
-    private String value;
+    private final String value;
 
     PostType(String value) {
         this.value = value;
