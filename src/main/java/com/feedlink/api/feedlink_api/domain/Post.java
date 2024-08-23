@@ -3,6 +3,8 @@ package com.feedlink.api.feedlink_api.domain;
 import com.feedlink.api.feedlink_api.enums.PostType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -28,6 +30,7 @@ public class Post {
     private Long postViewCnt;
     private Long postLikeCnt;
     private Long postShareCnt;
+    @Enumerated(EnumType.STRING)
     private PostType postType;
     private LocalDateTime postCreateTime;
     private LocalDateTime postUpdateTime;
