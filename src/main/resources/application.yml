@@ -15,9 +15,14 @@ spring:
 
   # JPA 설정
   jpa:
+    open-in-view: false
     hibernate:
       ddl-auto: update
-    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
 
   # Spring Security 설정
   security:
