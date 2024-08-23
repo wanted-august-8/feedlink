@@ -1,6 +1,8 @@
-package com.feedlink.api.feedlink_api.domain;
+package com.feedlink.api.feedlink_api.domain.post.entity;
 
-import com.feedlink.api.feedlink_api.enums.PostType;
+import com.feedlink.api.feedlink_api.domain.hashtag.entity.Hashtag;
+import com.feedlink.api.feedlink_api.domain.posthashtag.entity.PostHashtag;
+import com.feedlink.api.feedlink_api.domain.post.enums.PostType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

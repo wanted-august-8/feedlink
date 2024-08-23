@@ -1,5 +1,7 @@
-package com.feedlink.api.feedlink_api.domain;
+package com.feedlink.api.feedlink_api.domain.posthashtag.entity;
 
+import com.feedlink.api.feedlink_api.domain.hashtag.entity.Hashtag;
+import com.feedlink.api.feedlink_api.domain.post.entity.Post;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
