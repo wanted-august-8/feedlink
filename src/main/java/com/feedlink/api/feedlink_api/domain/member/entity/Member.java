@@ -1,4 +1,4 @@
-package com.feedlink.api.feedlink_api.domain;
+package com.feedlink.api.feedlink_api.domain.member.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
