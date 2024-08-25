@@ -1,5 +1,6 @@
 package com.feedlink.api.feedlink_api.domain.member.controller;
 
+import com.feedlink.api.feedlink_api.domain.member.dto.MemberLoginRequest;
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberSignupRequest;
 import com.feedlink.api.feedlink_api.domain.member.service.MemberService;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
@@ -31,4 +32,17 @@ public class MemberController {
         CommonResponse<String> response = memberService.signup(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
+
+    /**
+     * 로그인 요청을 처리하는 엔드포인트입니다.
+     *
+     * @param request   이메일,비밀번호를 담은 DTO 객체
+     */
+    @PostMapping("/login")
+    public ResponseEntity<CommonResponse<?>> login(@Valid @RequestBody MemberLoginRequest request){
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+
 }
