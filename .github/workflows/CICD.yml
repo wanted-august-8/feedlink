@@ -23,7 +23,14 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-
+        
+    - name: Start MySQL
+      uses: samin/mysql-action@v1.3
+      with:
+        mysql database: ${{ secrets.FEEDLINK_DB_SCHEMA }}
+        mysql user: ${{ secrets.FEEDLINK_DB_USERNAME }}
+        mysql password: ${{ secrets.FEEDLINK_DB_PASSWORD }}
+          
     - name: Gradle Caching
       uses: actions/cache@v3
       with:
