@@ -1,19 +1,15 @@
 package com.feedlink.api.feedlink_api.domain.statistic.controller;
 
-import com.feedlink.api.feedlink_api.domain.statistic.dto.StatisticResultDTO;
 import com.feedlink.api.feedlink_api.domain.statistic.request.StatisticReqDTO;
 import com.feedlink.api.feedlink_api.domain.statistic.response.StatisticRes;
 import com.feedlink.api.feedlink_api.domain.statistic.service.StatisticService;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
 import com.feedlink.api.feedlink_api.global.error.ErrorCode;
 import com.feedlink.api.feedlink_api.global.exception.CustomException;
-import jakarta.validation.Valid;
 import java.util.Date;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +55,7 @@ public class StatisticController {
             return new ResponseEntity<>(response, HttpStatusCode.valueOf(200));
 
         }catch (NullPointerException e){
-            throw new CustomException(ErrorCode.REQUIED_PARAM);
+            throw new CustomException(ErrorCode.REQUIRED_PARAM);
         }
 
     }

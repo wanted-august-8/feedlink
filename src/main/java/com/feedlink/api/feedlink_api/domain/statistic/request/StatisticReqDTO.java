@@ -49,7 +49,7 @@ public class StatisticReqDTO {
             this.value = value == null? StatisticValue.COUNT.getValue() : value;
             this.types = Arrays.stream(type).toList();
         }catch (NullPointerException e){
-            throw new CustomException(ErrorCode.REQUIED_PARAM);
+            throw new CustomException(ErrorCode.REQUIRED_PARAM);
         }
     }
 }
