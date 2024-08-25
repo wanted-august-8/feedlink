@@ -7,6 +7,7 @@ import com.feedlink.api.feedlink_api.domain.member.util.PasswordValidator;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
 import com.feedlink.api.feedlink_api.global.error.ErrorCode;
 import com.feedlink.api.feedlink_api.global.exception.CustomException;
+import java.util.Optional;
 import java.util.Random;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -50,14 +51,20 @@ public class MemberService {
      * @param request 회원가입 요청을 담은 DTO 객체
      */
     private void validateSignupRequest(MemberSignupRequest request) {
-        // 이메일 중복 검사
-        if (memberRepository.findByMemberEmail(request.getMemberEmail()).isPresent()) {
-            throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS);
-        }
+        Optional<Member> memberOptional = memberRepository.findByMemberEmailOrMemberAccount(request.getMemberEmail(), request.getMemberAccount());
 
-        // 계정 중복 검사
-        if (memberRepository.findByMemberAccount(request.getMemberAccount()).isPresent()) {
-            throw new CustomException(ErrorCode.ACCOUNT_ALREADY_EXISTS);
+        if (memberOptional.isPresent()) {
+            Member existingMember = memberOptional.get();
+
+            // 이메일 중복 검사
+            if (existingMember.getMemberEmail().equals(request.getMemberEmail())) {
+                throw new CustomException(ErrorCode.EMAIL_ALREADY_EXISTS);
+            }
+
+            // 계정 중복 검사
+            if (existingMember.getMemberAccount().equals(request.getMemberAccount())) {
+                throw new CustomException(ErrorCode.ACCOUNT_ALREADY_EXISTS);
+            }
         }
 
         // 비밀번호 조건 검사
