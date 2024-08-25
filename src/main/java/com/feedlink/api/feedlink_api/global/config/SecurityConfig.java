@@ -15,7 +15,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
-                    "/api/members/signup").permitAll() // Swagger 관련 경로 허용
+                    "/api/members/signup", "/api/members/verify").permitAll() // Swagger 관련 경로, 회원가입 및 인증 관련 허용
                 .anyRequest().authenticated() // 나머지 모든 요청은 인증 필요
             )
             .csrf(csrf -> csrf.disable()) // 전체 CSRF 비활성화

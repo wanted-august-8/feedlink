@@ -36,4 +36,8 @@ public class Member {
         this.memberCode = memberCode;
         this.memberStatus = memberStatus;
     }
+
+    public void setMemberStatus(Boolean memberStatus) {
+        this.memberStatus = memberStatus;
+    }
 }
