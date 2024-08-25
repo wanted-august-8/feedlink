@@ -1,43 +1,25 @@
+# 공통 환경 설정
+
+server:
+  env: blue;
+
 spring:
   application:
     name: feedlink-api
 
-  # default profile 설정
+  # default profile, group 설정
   profiles:
     active: local
-
-  # MySQL 데이터베이스 설정
-  datasource:
-    url: jdbc:mysql://localhost:3306/feedlink
-    username: august8
-    password: august8!
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  # JPA 설정
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        format_sql: true
-        show_sql: true
-        highlight_sql: true
+    group:
+      local: local
+      blue: blue, prod
+      green: green, prod
 
   # Spring Security 설정
   security:
     user:
       name: admin
       password: admin
-
-  # DevTools 설정 (자동 재시작)
-  devtools:
-    restart:
-      enabled: true
-
-# logback 설정
-logging:
-  config: classpath:logback-${spring.profiles.active}.xml
 
 # Springdoc OpenAPI 설정
 springdoc:
@@ -48,14 +30,97 @@ springdoc:
 
 ---
 
+# 로컬 환경 설정
+
 spring:
   config:
     activate:
       on-profile: local
+
+  # DevTools 설정 (자동 재시작)
+  devtools:
+    restart:
+      enabled: true
+
+  # MySQL 데이터베이스 설정 - local
+  datasource:
+    url: jdbc:mysql://localhost:3306/feedlink
+    username: august8
+    password: august8!
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA 설정 - local
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
+
+# logback 설정
+logging:
+  config: classpath:logback-local.xml
+
+server:
+  port: 8080
+  serverAddress: localhost
+  serverName: local_server
 
 ---
 
 spring:
   config:
     activate:
+      on-profile: blue
+
+server:
+  port: 8080
+  serverName: blue_server
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: green
+
+server:
+  port: 8081
+  serverName: green_server
+
+---
+
+# 운영 환경 설정
+
+spring:
+  config:
+    activate:
       on-profile: prod
+
+  # MySQL 데이터베이스 설정 - prod
+  datasource:
+    url: jdbc:mysql://localhost:3306/feedlink
+    username: ${FEEDLINK_DB_USERNAME}
+    password: ${FEEDLINK_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  # JPA 설정 - prod
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+        highlight_sql: false
+
+# logback 설정
+logging:
+  config: classpath:logback-prod.xml
+
+server:
+  serverAddress: 15.164.248.177
