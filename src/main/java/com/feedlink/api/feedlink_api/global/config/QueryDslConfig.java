@@ -14,6 +14,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
     "com.feedlink.api.feedlink_api.domain.post.repository",
     "com.feedlink.api.feedlink_api.domain.hashtag.repository",
     "com.feedlink.api.feedlink_api.domain.posthashtag.repository",
+    "com.feedlink.api.feedlink_api.domain.statistic.repository"
 })
 public class QueryDslConfig {
 
