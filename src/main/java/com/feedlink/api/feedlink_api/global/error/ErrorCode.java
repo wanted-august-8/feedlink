@@ -17,9 +17,12 @@ public enum ErrorCode {
     PASSWORD_LACKS_VARIETY(HttpStatus.BAD_REQUEST, "숫자, 문자, 특수문자 중 2가지 이상을 포함해야 합니다."),
     PASSWORD_SIMILAR_TO_PERSONAL_INFO(HttpStatus.BAD_REQUEST, "비밀번호는 다른 개인 정보와 유사할 수 없습니다."),
     PASSWORD_SAME_AS_PREVIOUS(HttpStatus.BAD_REQUEST, "이전 비밀번호와 동일하게 설정할 수 없습니다."),
-    PASSWORD_HAS_SEQUENTIAL_CHARS(HttpStatus.BAD_REQUEST, "3회 이상 연속되는 문자는 사용할 수 없습니다.");
+    PASSWORD_HAS_SEQUENTIAL_CHARS(HttpStatus.BAD_REQUEST, "3회 이상 연속되는 문자는 사용할 수 없습니다."),
 
-
+    //통계
+    DATE_VALIDATE_PARAM(HttpStatus.BAD_REQUEST, "날짜 유효성 조건에 맞지 않습니다."),
+    VALIDATE_PARAM(HttpStatus.BAD_REQUEST, "유효성 조건에 맞지 않습니다."),
+    REQUIED_PARAM(HttpStatus.INTERNAL_SERVER_ERROR, "Not Null");
 
     private final HttpStatus httpStatus;
     private final String message;
