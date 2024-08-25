@@ -27,6 +27,10 @@ jobs:
     - name: Setup MySQL
       uses: mirromutth/mysql-action@v1.1
       with:
+        host port: 3306
+        container port: 3306
+        character set server: 'utf8mb4'
+        collation server: 'utf8mb4_general_ci'
         mysql database: ${{ secrets.FEEDLINK_DB_SCHEMA }}
         mysql user: ${{ secrets.FEEDLINK_DB_USERNAME }}
         mysql password: ${{ secrets.FEEDLINK_DB_PASSWORD }}
