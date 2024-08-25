@@ -24,8 +24,8 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    - name: Start MySQL
-      uses: samin/mysql-action@v1.3
+    - name: Setup MySQL
+      uses: mirromutth/mysql-action@v1.1
       with:
         mysql database: ${{ secrets.FEEDLINK_DB_SCHEMA }}
         mysql user: ${{ secrets.FEEDLINK_DB_USERNAME }}
