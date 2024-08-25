@@ -21,6 +21,12 @@ spring:
       name: admin
       password: admin
 
+# JWT 설정
+jwt:
+  secret: 411f78115cf6011681137d338b0eff4dce52ae9dcfbb40be18309729177e0380
+  grant-type: Bearer
+  token-validate-in-seconds : 10800
+
 # Springdoc OpenAPI 설정
 springdoc:
   api-docs:

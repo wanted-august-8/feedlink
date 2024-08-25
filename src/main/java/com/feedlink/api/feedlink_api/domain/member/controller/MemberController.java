@@ -3,11 +3,14 @@ package com.feedlink.api.feedlink_api.domain.member.controller;
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberLoginRequest;
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberSignupRequest;
 import com.feedlink.api.feedlink_api.domain.member.service.MemberService;
+import com.feedlink.api.feedlink_api.domain.security.PrincipalDetails;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/members")
 @AllArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
@@ -41,6 +45,12 @@ public class MemberController {
     @PostMapping("/login")
     public ResponseEntity<CommonResponse<?>> login(@Valid @RequestBody MemberLoginRequest request){
 
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<CommonResponse<?>> test(@AuthenticationPrincipal PrincipalDetails member){
+        log.info("member check : {}",member.getMember().getMemberEmail());
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

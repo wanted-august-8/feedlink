@@ -5,6 +5,7 @@ import static com.feedlink.api.feedlink_api.global.error.ErrorCode.LOGIN_FAIL;
 import com.feedlink.api.feedlink_api.domain.member.entity.Member;
 import com.feedlink.api.feedlink_api.domain.member.repository.MemberRepository;
 import com.feedlink.api.feedlink_api.domain.security.PrincipalDetails;
+import com.feedlink.api.feedlink_api.domain.security.dto.ReissueRequest;
 import com.feedlink.api.feedlink_api.global.security.autheniation.token.TokenService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +31,8 @@ public class SecurityService implements UserDetailsService {
         return new PrincipalDetails(member);
     }
 
-//    public String reissue(ReissueRequest reissueRequest) {
-//        return tokenService.reissueToken(reissueRequest.refreshToken(), reissueRequest.accessToken());
-//    }
+    public String reissue(ReissueRequest reissueRequest) {
+        return tokenService.reissueToken(reissueRequest.getRefreshToken(),
+            reissueRequest.getAccessToken());
+    }
 }

@@ -42,8 +42,8 @@ public class TokenProvider {
     ) {
         this.key = getSecretKey(secretKey);
         this.grantType = grantType;
-        this.accessTokenExpiredTime = tokenValidateInSeconds;
-        this.refreshTokenExpiredTime = tokenValidateInSeconds * TOKEN_REFRESH_INTERVAL;
+        this.accessTokenExpiredTime = tokenValidateInSeconds; //accessToken 만료시간 3시간
+        this.refreshTokenExpiredTime = tokenValidateInSeconds * TOKEN_REFRESH_INTERVAL; //72시간
     }
 
     /** Token 생성 */

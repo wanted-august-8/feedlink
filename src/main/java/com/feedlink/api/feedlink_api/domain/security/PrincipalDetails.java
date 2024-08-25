@@ -4,7 +4,6 @@ import com.feedlink.api.feedlink_api.domain.member.entity.Member;
 import java.util.Collection;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 @Getter
 public class PrincipalDetails implements UserDetails {
@@ -27,7 +26,7 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return member.getMemberAccount();
+        return member.getMemberEmail();
     }
 
     @Override
