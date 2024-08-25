@@ -11,10 +11,21 @@ permissions:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
+
+    services:
+      mysql:
+        image: mysql:8.0
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+        env:
+          MYSQL_ROOT_PASSWORD: ${{ secrets.FEEDLINK_DB_PASSWORD }}
+          MYSQL_DATABASE: ${{ secrets.FEEDLINK_DB_SCHEMA }}
+          MYSQL_USER: ${{ secrets.FEEDLINK_DB_USERNAME }}
+          MYSQL_PASSWORD: ${{ secrets.FEEDLINK_DB_PASSWORD }}
+        ports:
+          - 3306:3306
 
     steps:
     - uses: actions/checkout@v4
@@ -23,17 +34,6 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-        
-    - name: Setup MySQL
-      uses: mirromutth/mysql-action@v1.1
-      with:
-        host port: 3306
-        container port: 3306
-        character set server: 'utf8mb4'
-        collation server: 'utf8mb4_general_ci'
-        mysql database: ${{ secrets.FEEDLINK_DB_SCHEMA }}
-        mysql user: ${{ secrets.FEEDLINK_DB_USERNAME }}
-        mysql password: ${{ secrets.FEEDLINK_DB_PASSWORD }}
           
     - name: Gradle Caching
       uses: actions/cache@v3
