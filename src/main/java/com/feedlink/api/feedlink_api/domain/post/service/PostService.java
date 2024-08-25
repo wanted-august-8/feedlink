@@ -76,4 +76,30 @@ public class PostService {
 
         return postDTOs;
     }
+
+    @Transactional
+    public PostDTO getPostById(Long id) {
+        Post post = postRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Post not found"));
+
+        post.setPostViewCnt(post.getPostViewCnt() + 1);
+        postRepository.save(post);
+
+        List<String> hashtags = post.getPostHashtagList().stream()
+            .map(postHashtag -> postHashtag.getHashtag().getHashtagName())
+            .collect(Collectors.toList());
+
+        return PostDTO.builder()
+            .postId(post.getPostId())
+            .postTitle(post.getPostTitle())
+            .postContent(post.getPostContent())
+            .postViewCnt(post.getPostViewCnt())
+            .postLikeCnt(post.getPostLikeCnt())
+            .postShareCnt(post.getPostShareCnt())
+            .postType(post.getPostType())
+            .postCreateTime(post.getPostCreateTime())
+            .postUpdateTime(post.getPostUpdateTime())
+            .hashtags(hashtags)
+            .build();
+    }
 }

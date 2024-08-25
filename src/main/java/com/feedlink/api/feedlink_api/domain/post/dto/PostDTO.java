@@ -1,5 +1,6 @@
 package com.feedlink.api.feedlink_api.domain.post.dto;
 
+import com.feedlink.api.feedlink_api.domain.post.entity.Post;
 import com.feedlink.api.feedlink_api.domain.post.enums.PostType;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,4 +24,7 @@ public class PostDTO {
     private LocalDateTime postCreateTime;
     private LocalDateTime postUpdateTime;
     private List<String> hashtags;
+
+    public PostDTO(Post post) {
+    }
 }
