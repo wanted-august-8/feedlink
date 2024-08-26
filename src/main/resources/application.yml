@@ -124,6 +124,13 @@ spring:
         show_sql: false
         highlight_sql: false
 
+  # Redis 설정
+  data:
+    redis:
+      host: 15.164.248.177
+      port: 6379
+
+
 # logback 설정
 logging:
   config: classpath:logback-prod.xml
