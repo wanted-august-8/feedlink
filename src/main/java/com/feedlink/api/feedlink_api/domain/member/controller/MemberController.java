@@ -1,6 +1,7 @@
 package com.feedlink.api.feedlink_api.domain.member.controller;
 
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberLoginRequest;
+import com.feedlink.api.feedlink_api.domain.member.dto.MemberLogoutRequest;
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberSignupRequest;
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberVerificationRequest;
 import com.feedlink.api.feedlink_api.domain.member.service.MemberService;
@@ -301,21 +302,32 @@ public class MemberController {
      * @param request   이메일,비밀번호를 담은 DTO 객체
      */
     @Operation(summary = "로그인", description = "사용자가 이메일, 비밀번호 제공하여 로그인을 요청합니다.")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "201", description = "Request Success"),
+        @ApiResponse(responseCode = "400", description = "Bad Request"),
+        @ApiResponse(responseCode = "401", description = "Unauthorized"),
+        @ApiResponse(responseCode = "404", description = "Not Found"),
+        @ApiResponse(responseCode = "500", description = "Internal Server Error"),
+    })
     @PostMapping("/login")
     public ResponseEntity<CommonResponse<?>> login(@Valid @RequestBody MemberLoginRequest request){
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-
     /**
-     * @AuthenticationPrincipal accessToken으로 Member 개체를 확인합니다.
+     * 로그아웃을 처리하는 엔드포인트입니다.
+     *
+     * @param request   accessToken, refreshToken를 담은 DTO 객체
      */
-    @PostMapping("/test")
-    public ResponseEntity<CommonResponse<?>> test(@AuthenticationPrincipal PrincipalDetails member){
-        log.info("member check : {}",member.getMember().getMemberEmail());
+    @Operation(summary = "로그아웃", description = "사용자가 accessToken, refreshToken을 제공하여 로그아웃을 요청합니다.")
+    @PostMapping("/logout")
+    public ResponseEntity<CommonResponse<?>> logout(@Valid @RequestBody MemberLogoutRequest request){
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 
 
 }
