@@ -8,9 +8,11 @@ import lombok.NonNull;
 @Getter
 public class ReissueRequest {
 
+    @Schema(description = "refreshToken", example = "asdkfjaasdf3123409123...")
     @NotBlank(message = "refreshToken는 필수 값 입니다.")
     private String refreshToken;
 
+    @Schema(description = "accessToken", example = "asdkfjaasdf3123409123...")
     @NotBlank(message = "accessToken는 필수 값 입니다.")
     private String accessToken;
 }

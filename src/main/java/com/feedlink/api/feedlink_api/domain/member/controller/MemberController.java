@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -299,6 +300,7 @@ public class MemberController {
      *
      * @param request   이메일,비밀번호를 담은 DTO 객체
      */
+    @Operation(summary = "로그인", description = "사용자가 이메일, 비밀번호 제공하여 로그인을 요청합니다.")
     @PostMapping("/login")
     public ResponseEntity<CommonResponse<?>> login(@Valid @RequestBody MemberLoginRequest request){
 
