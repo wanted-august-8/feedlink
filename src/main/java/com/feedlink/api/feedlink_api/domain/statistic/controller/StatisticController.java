@@ -53,6 +53,7 @@ public class StatisticController {
         @ApiResponse(responseCode = "504", description = "Gateway Timeout", content = @Content(schema = @Schema(implementation = CustomException.class))),
     })
     public ResponseEntity<CommonResponse<StatisticRes>> getPostStatistic (
+        @AuthenticationPrincipal PrincipalDetails principalDetails,
         @RequestParam(value = "hashtag",required = false)
         @Schema(example = "카페", description="해시태그 없으면 로그인한 사용자 계정")
         String hashtag,
@@ -76,7 +77,7 @@ public class StatisticController {
         try {
 
             StatisticReqDTO statisticReq = StatisticReqDTO.builder()
-                .hashtag(hashtag)
+                .hashtag(hashtag==null?principalDetails.getMember().getMemberAccount():hashtag)
                 .start(start)
                 .end(end)
                 .value(value)
