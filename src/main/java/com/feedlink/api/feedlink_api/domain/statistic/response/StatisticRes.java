@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.feedlink.api.feedlink_api.domain.statistic.dto.StatisticResultDTO;
 import com.feedlink.api.feedlink_api.global.common.DateUtils;
+import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,11 +20,18 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StatisticRes {
+    @Schema(description = "통계 결과 시작 일자", example = "2024-08-18")
     private String start;
+
+    @Schema(description = "통계 결과 종료 일자", example = "2024-08-25")
     private String end;
+
     @JsonInclude(Include.NON_EMPTY)
+    @Schema(description = "통계 기간내 일자별 목록")
     private List<StatisticResultDTO> dateList;
+
     @JsonInclude(Include.NON_EMPTY)
+    @Schema(description = "통계 기간내 시각별 목록")
     private List<StatisticResultDTO> hourList;
 
     @Builder
