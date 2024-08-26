@@ -21,4 +21,13 @@ public class CommonResponse<T> {
     public static <T> CommonResponse<T> ok(String message, T data) {
         return new CommonResponse<>(HttpStatus.OK, message, data);
     }
+
+    public static CommonResponse<Void> fail(String message) {
+        return fail(message, null);
+    }
+
+    public static <T> CommonResponse<T> fail(String message, T data) {
+        return new CommonResponse<>(HttpStatus.UNAUTHORIZED, message, data);
+    }
+
 }
