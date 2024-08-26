@@ -1,11 +1,8 @@
-package com.feedlink.api.feedlink_api.domain.security.controller;
+package com.feedlink.api.feedlink_api.domain.security.SecurityController;
 
 import com.feedlink.api.feedlink_api.domain.security.dto.ReissueRequest;
 import com.feedlink.api.feedlink_api.domain.security.service.SecurityService;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
