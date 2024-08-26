@@ -1,6 +1,7 @@
 package com.feedlink.api.feedlink_api.domain.member.controller;
 
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberSignupRequest;
+import com.feedlink.api.feedlink_api.domain.member.dto.MemberVerificationRequest;
 import com.feedlink.api.feedlink_api.domain.member.service.MemberService;
 import com.feedlink.api.feedlink_api.global.common.CommonResponse;
 import jakarta.validation.Valid;
@@ -30,5 +31,18 @@ public class MemberController {
     public ResponseEntity<CommonResponse<String>> signup(@Valid @RequestBody MemberSignupRequest request) {
         CommonResponse<String> response = memberService.signup(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    /**
+     * 회원가입 승인 요청을 처리하는 엔드포인트입니다.
+     * 사용자가 입력한 계정 정보와 인증 코드를 검증하고, 계정을 활성화합니다.
+     *
+     * @param request 회원가입 승인 요청을 담은 DTO 객체
+     * @return 계정 활성화 결과를 담은 CommonResponse 객체와 HTTP 상태 코드
+     */
+    @PostMapping("/verify")
+    public ResponseEntity<CommonResponse<String>> verifyMember(@Valid @RequestBody MemberVerificationRequest request) {
+        CommonResponse<String> response = memberService.verifyMember(request);
+        return ResponseEntity.ok(response);
     }
 }

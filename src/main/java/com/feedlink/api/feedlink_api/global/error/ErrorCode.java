@@ -22,7 +22,12 @@ public enum ErrorCode {
     //통계
     DATE_VALIDATE_PARAM(HttpStatus.BAD_REQUEST, "날짜 유효성 조건에 맞지 않습니다."),
     VALIDATE_PARAM(HttpStatus.BAD_REQUEST, "유효성 조건에 맞지 않습니다."),
-    REQUIRED_PARAM(HttpStatus.INTERNAL_SERVER_ERROR, "Not Null");
+    REQUIRED_PARAM(HttpStatus.INTERNAL_SERVER_ERROR, "Not Null"),
+
+    //가입 인증
+    PASSWORD_INVALID(HttpStatus.BAD_REQUEST, "비밀번호가 올바르지 않습니다."),
+    INVALID_MEMBER_CODE(HttpStatus.BAD_REQUEST, "인증 코드가 올바르지 않습니다.");
+
 
     private final HttpStatus httpStatus;
     private final String message;
