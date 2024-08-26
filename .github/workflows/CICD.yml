@@ -26,7 +26,13 @@ jobs:
           MYSQL_PASSWORD: ${{ secrets.FEEDLINK_DB_PASSWORD }}
         ports:
           - 3306:3306
-
+          
+      redis:
+        image: redis:7.0
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        ports:
+          - 6379:6379
+          
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -63,6 +69,7 @@ jobs:
       run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/prod_server:latest
       
   deploy:
+      if: github.event_name == 'push'
       needs: build
       runs-on: ubuntu-latest
       steps:
