@@ -16,7 +16,7 @@ public class MemberLoginRequest {
     @Email(message = "올바른 이메일 형식이 아닙니다.")
     private String email;
 
-    @Schema(description = "비밀번호", example = "abc12345678")
+    @Schema(description = "비밀번호", example = "rla12345678")
     @NotBlank(message = "이메일은 필수 입력 값 입니다.")
     @Size(min = 10, message = "비밀번호는 최소 10자 이상이어야 합니다.")
     private String password;

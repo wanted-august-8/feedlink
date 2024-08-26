@@ -1,9 +1,9 @@
 package com.feedlink.api.feedlink_api.global.security.autheniation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.feedlink.api.feedlink_api.domain.member.dto.MemberLogoutRequest;
 import com.feedlink.api.feedlink_api.global.error.ErrorCode;
 import com.feedlink.api.feedlink_api.global.exception.CustomException;
-import com.feedlink.api.feedlink_api.global.security.autheniation.dto.LogoutRequest;
 import com.feedlink.api.feedlink_api.global.security.autheniation.token.TokenService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,16 +25,16 @@ public class LogoutTokenHandler implements LogoutHandler {
         HttpServletResponse response,
         Authentication authentication
     ) {
-        LogoutRequest logoutRequest = getLogoutInfo(request);
+        MemberLogoutRequest logoutRequest = getLogoutInfo(request);
         log.info("Logout Info = {}", logoutRequest);
 
         tokenService.removeRefreshToken(logoutRequest.getRefreshToken());
         tokenService.addBlackList(logoutRequest.getAccessToken());
     }
 
-    private LogoutRequest getLogoutInfo(HttpServletRequest request) {
+    private MemberLogoutRequest getLogoutInfo(HttpServletRequest request) {
         try {
-            return objectMapper.readValue(request.getReader(), LogoutRequest.class);
+            return objectMapper.readValue(request.getReader(), MemberLogoutRequest.class);
         } catch (IOException e) {
             log.error(e.getMessage());
             throw new CustomException(ErrorCode.INVALID_INPUT_VALUE);
