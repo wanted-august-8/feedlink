@@ -40,8 +40,14 @@ public enum ErrorCode {
     EMPTY_REFRESH_TOKEN(BAD_REQUEST, "Refresh Token은 필수 값 입니다."),
     EMPTY_ACCESS_TOKEN(BAD_REQUEST, "Access Token은 필수 값 입니다."),
     LOGOUT_ACCESS_TOKEN(UNAUTHORIZED, "로그아웃 된 토큰입니다."),
-    EXPIRED_TOKEN(UNAUTHORIZED, "만료된 토큰 입니다.");
+    EXPIRED_TOKEN(UNAUTHORIZED, "만료된 토큰 입니다."),
+    
+    //가입 인증
+    PASSWORD_INVALID(HttpStatus.BAD_REQUEST, "비밀번호가 올바르지 않습니다."),
+    INVALID_MEMBER_CODE(HttpStatus.BAD_REQUEST, "인증 코드가 올바르지 않습니다.")
 
+
+    ;
 
     private final HttpStatus httpStatus;
     private final String message;

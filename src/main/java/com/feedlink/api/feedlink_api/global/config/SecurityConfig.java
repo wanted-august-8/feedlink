@@ -42,7 +42,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
                 .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html",
                     "/api/members/signup", "/api/members/login", "/api/members/logout",
-                    "/api/security/reissue")
+                    "/api/security/reissue", "/api/members/verify")
                 .permitAll() // Swagger 관련 경로 허용
                 .anyRequest().authenticated() // 나머지 모든 요청은 인증 필요
             )

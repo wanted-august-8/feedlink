@@ -1,6 +1,7 @@
 package com.feedlink.api.feedlink_api.domain.member.service;
 
 import com.feedlink.api.feedlink_api.domain.member.dto.MemberSignupRequest;
+import com.feedlink.api.feedlink_api.domain.member.dto.MemberVerificationRequest;
 import com.feedlink.api.feedlink_api.domain.member.entity.Member;
 import com.feedlink.api.feedlink_api.domain.member.repository.MemberRepository;
 import com.feedlink.api.feedlink_api.domain.member.util.PasswordValidator;
@@ -42,6 +43,35 @@ public class MemberService {
             .build();
         memberRepository.save(member);
         return CommonResponse.ok("가입 승인 메일을 보냈습니다. 가입 승인을 완료해 주세요.", null);
+    }
+
+    /**
+     * 회원가입 승인을 처리하는 메서드입니다.
+     * 사용자가 입력한 계정, 비밀번호, 인증 코드를 검증하고 계정을 활성화합니다.
+     *
+     * @param request 회원가입 승인 요청을 담은 DTO 객체
+     * @return CommonResponse<String> 계정 활성화 성공 메시지 반환
+     */
+    @Transactional
+    public CommonResponse<String> verifyMember(MemberVerificationRequest request) {
+        Member member = memberRepository.findByMemberAccount(request.getMemberAccount())
+            .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
+
+        // 비밀번호 확인
+        if (!passwordEncoder.matches(request.getMemberPwd(), member.getMemberPwd())) {
+            throw new CustomException(ErrorCode.PASSWORD_INVALID);
+        }
+
+        // 인증 코드 확인
+        if (!member.getMemberCode().equals(request.getMemberCode())) {
+            throw new CustomException(ErrorCode.INVALID_MEMBER_CODE);
+        }
+
+        // 가입 승인
+        member.setMemberStatus(true); // 계정 활성화
+        memberRepository.save(member);
+
+        return CommonResponse.ok("계정이 성공적으로 활성화되었습니다.", null);
     }
 
     /**

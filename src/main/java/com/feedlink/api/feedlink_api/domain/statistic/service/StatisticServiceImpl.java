@@ -14,6 +14,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +23,7 @@ public class StatisticServiceImpl implements StatisticService{
     private final StatisticRepository statisticRepository;
 
     @Override
+    @Transactional(readOnly = true)
     public CommonResponse<StatisticRes> getPostStatistics(StatisticReqDTO statisticReqDTO) {
 
         StatisticValidator.validateValueType(statisticReqDTO.getTypes(),statisticReqDTO.getValue());
