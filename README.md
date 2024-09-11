@@ -7,6 +7,7 @@
 - [개발기간](#개발기간)
 - [시나리오](#시나리오)
 - [기술 스택](#기술-스택)
+- [아키텍처](#아키텍처)
 - [데이터베이스 모델링](#데이터베이스-모델링)
 - [API 명세](#API-명세)
 - [구현 기능](#구현-기능)
@@ -18,7 +19,7 @@
   <br/>
 
 ## 개발기간
-2024.08.20 - 2024. 08.26
+2024.08.20 - 2024. 08.26(7일)
 
 <br/>
 
@@ -36,6 +37,11 @@
 언어 및 프레임워크: ![Static Badge](https://img.shields.io/badge/Java-17-blue) ![Static Badge](https://img.shields.io/badge/Springboot-3.2.8-red)<br/>
 데이터 베이스: ![Static Badge](https://img.shields.io/badge/Mysql-8.0.1-blue) <br/>
 배포 : ![Static Badge](https://img.shields.io/badge/Docker-039BC6) ![Static Badge](https://img.shields.io/badge/AWS-EC2-orange) ![Static Badge](https://img.shields.io/badge/Github-Actions-black) ![Static Badge](https://img.shields.io/badge/nginx-blue) <br/> ETC : ![Static Badge](https://img.shields.io/badge/Redis-red)
+
+<br/>
+
+## 아키텍처
+<img width="671" alt="image" src="https://github.com/user-attachments/assets/b2d2ab6e-f37c-4647-812f-938722a2257a">
 
 <br/>
 
