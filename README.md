@@ -53,6 +53,17 @@
 
 local 주소:  http://localhost:8080/swagger-ui/index.html#/
 
+| **분류** | **API 명칭** | **HTTP 메서드** | **엔드포인트** | **설명** |
+| --- | --- | --- | --- | --- |
+| **인증&인가** | 사용자 회원가입 | POST | /api/members/signup | 사용자는 계정명, 비밀번호로 회원가입합니다. |
+|  | 사용자 승인 | POST | /api/members/verify | 사용자는 인증 코드를 통해 계정을 활성화합니다. |
+|  | 사용자 로그인 | POST | /api/members/login | 사용자는 계정명, 비밀번호로 로그인합니다. 로그인 시 ReponseBody에 Refresh Token, Access Token이 발급됩니다. |
+|  | 사용자 로그아웃  | POST | /api/members/logout | 사용자는 로그아웃합니다. | 로그아웃 시 Redis에 AcessToken을 저장합니다. |
+|  | 토큰 재발급 | POST | /api/security/reissue | 유효한 Refresh Token으로 Access Token, Refresh Token을 재발급합니다. |
+| **통계** | 게시글 통계 | GET | /api/statistics | 기간내 게시글을 일별, 시각별 게시물의 통계결과를 반환합니다(해시태그 default : 계정) |
+| **게시글** | 게시글 목록 | GET | /api/posts | 해시태그, 타입, 정렬 순서, 검색 기준으로 게시글 목록을 검색합니다. |
+|  | 게시글 상세 | GET | /api/posts/{id} | 게시글 상세 정보를 확인하고, 조회수를 증가시킵니다. |
+
 <br/>
 
 ## 구현 기능
