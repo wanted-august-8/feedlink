@@ -121,18 +121,26 @@ local 주소:  http://localhost:8080/swagger-ui/index.html#/
 ### 👻김남은 [Github](https://www.github.com/perhona)
 
 - 역할: AWS EC2 환경의 CI/CD 구축
+- Github Actions와 Docker, NginX를 활용한 Blue/Green 무중단 배포 전략 구현
 
 ### ⚽️김윤설 [Github](https://www.github.com/seoseo17)
 
 - 역할 : JWT 기반으로 로그인, 로그아웃 구현
+- Spring Security의 필터 체인을 사용해 SecurityHandler와 LogoutHandler로 로그인, 로그아웃 처리
+- 로그아웃 시 Redis에 accessToken을 저장해 토큰 탈취를 방지하고 사용자 보안을 강화
 
 ### 🐬김재령 [Github](https://www.github.com/Minerva08)
 
 - 역할 : 게시글 기반 해시태그 통계
+- JPA를 통한 동적 쿼리 및 다양한 조건의 통계 쿼리 타입을 QueryDSL을 통해 유연하고 안전한게 구현
+- 통계 기간 유효성 검증을 통한 통계 결과의 정확성 향상
 
 ### 🐣손홍서 [Github](https://www.github.com/hongggs)
 
 - 역할: 회원가입, 가입승인
+- 회원가입 시 다양한 오류처리를 진행하며 사용자 편의를 제공
+- 회원가입 시 보안을 강화하기 위해 비밀번호 제약 조건을 엄격하게 설정
+- 가입 승인을 통해 사용자 인증 절차를 완료해야만 회원가입이 가능하도록 설정하여 보안을 강화
 
 ### 🍀이현영 [Github](https://www.github.com/eter2)
 
